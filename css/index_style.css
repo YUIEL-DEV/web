@@ -1,0 +1,277 @@
+.text-line {
+	display: flex;
+	align-items: center;
+}
+
+.text-line:before,
+.text-line:after {
+	content: "";
+	flex-grow: 1;
+	height: 1px; /* 線の太さ */
+	background: #000; /* 線の色 */
+	margin:0 2em; /* 文字と線の余白 */
+}
+
+.head-line {
+	font-size: 22px;
+}
+
+body {
+	margin: 0;
+}
+
+#preload {
+	visibility: visible;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right:0;
+	left:0;
+	bottom:0;
+	z-index: 10;
+}
+
+#video-area {
+	position: fixed;
+	top: 0;
+	right:0;
+	left:0;
+	bottom:0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+/*動画の位置＆サイズ*/
+video {
+	top: 0;
+	right:0;
+	left:0;
+	bottom:0;
+	width: 100%;
+	height: 100vh;
+	object-fit: cover;
+}
+
+#logo-area {
+	height: 100vh;
+}
+
+img {
+	position: absolute;
+	top: 0;
+	right:0;
+	left:0;
+	bottom:0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+/*----------------------------
+* メニュー開閉ボタン
+*----------------------------*/
+.menu-btn{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+  color: #fff;
+}
+
+/*----------------------------
+* メニュー本体
+*----------------------------*/
+.menu{
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #555;
+}
+.menu__item{
+  width: 100%;
+  height: auto;
+  padding: .5em 1em;
+  text-align: center;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/*----------------------------
+* アニメーション部分
+*----------------------------*/
+
+/* アニメーション前のメニューの状態 */
+.menu{
+  transform: translateX(100vw);
+  transition: all .3s linear;
+}
+/* アニメーション後のメニューの状態 */
+.menu.is-active{
+  transform: translateX(0);
+}
+
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px;
+	align-items: stretch;
+	justify-content:center;
+	max-width: "767px";
+}
+
+
+iframe.twitter-timeline {
+	width : auto !important;
+	height : auto !important;
+}
+
+
+.container{
+	display:flex;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.background-img{
+  background-image: url("https://3.bp.blogspot.com/-piZWCW2uUbg/W2fPXxkWZgI/AAAAAAAAOu0/eydmMjTIqcwLMHEEr2H7imqoRTxMw4o9QCLcBGAs/s1600/among_trees_night_dribbble.png");
+height: 80vh;
+  width: 80vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 5% auto;
+  padding:20px;
+  border: 1px solid #2a3cad;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px #2a3cad;
+  position: relative;
+}
+
+.content h2{ font-size:19px;}
+
+.box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: #111845a6;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgb(23, 32, 90);
+  border: 2px solid #2a3cad;
+  color: white;
+  padding: 20px;
+}
+
+.box:before{
+  content: '';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background: rgba(255,255,255,0.1);
+  transition:0.5s;
+  pointer-events: none;
+}
+
+.box:hover:before{
+  left:-50%;
+  transform: skewX(-5deg);
+}
+
+
+.box .content{
+  position:absolute;
+  top:15px;
+  left:15px;
+  right:15px;
+  bottom:15px;
+  border:1px solid #f0a591;
+  padding:20px;
+  text-align:center;
+  box-shadow: 0 5px 10px rgba(9,0,0,0.5);
+  
+}
+
+.box span{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  box-sizing: border-box;
+  
+}
+
+.box span:nth-child(1)
+{
+  transform:rotate(0deg);
+}
+
+.box span:nth-child(2)
+{
+  transform:rotate(90deg);
+}
+
+.box span:nth-child(3)
+{
+  transform:rotate(180deg);
+}
+
+.box span:nth-child(4)
+{
+  transform:rotate(270deg);
+}
+
+.box span:before
+{
+  content: '';
+  position: absolute;
+  width:100%;
+  height: 2px;
+  background: #50dfdb;
+  animation: animate 4s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+  transform:scaleX(0);
+  transform-origin: left;
+  }
+  50%
+  {
+    transform:scaleX(1);
+  transform-origin: left;
+  }
+  50.1%
+  {
+    transform:scaleX(1);
+  transform-origin: right;
+    
+  }
+  
+  100%
+  {
+    transform:scaleX(0);
+  transform-origin: right;
+    
+  }
+  
