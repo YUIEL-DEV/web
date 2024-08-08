@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", sourceSizeDetermination );
 
 window.onload = function() {
 	document.getElementById('preload').remove();
-	document.oncontextmenu = function () {return false;}
 	videoChange();
 }
 
@@ -99,3 +98,19 @@ $(document).ready(function() {
 		}
 	);
 });
+
+/* F12キー押下不可にする */
+document.addEventListener('keydown',(e) => {
+	if (e.keyCode === 123) {
+		e.preventDefault();
+	}
+});
+
+/* ドラッグ不可にする */
+document.onselectstart='';
+document.onmousedown='';
+document.body.onselectstart='';
+document.body.onmousedown='';
+
+/* 右クリック不可にする */
+document.oncontextmenu = function () {return false;}
