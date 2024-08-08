@@ -107,10 +107,20 @@ document.addEventListener('keydown',(e) => {
 });
 
 /* ドラッグ不可にする */
-document.onselectstart='';
-document.onmousedown='';
-document.body.onselectstart='';
-document.body.onmousedown='';
+document.addEventListener('onselectstart', function(event) {
+	event.preventDefault();
+});
+document.addEventListener('onmousedown', function(event) {
+	event.preventDefault();
+});
+document.addEventListener('onselectstart', function(event) {
+	event.preventDefault();
+});
+document.addEventListener('onmousedown', function(event) {
+	event.preventDefault();
+});
 
 /* 右クリック不可にする */
-document.oncontextmenu = function () {return false;}
+document.addEventListener('contextmenu', function(event) {
+	event.preventDefault();
+});
