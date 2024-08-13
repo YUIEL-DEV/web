@@ -26,24 +26,26 @@
           this.load.spritesheet('ship', './assets/pipo-airship01.png',
             { frameWidth: 32, frameHeight: 32 }
           );
+          this.load.audio('battle', './audio/battle.mp3');
           this.load.video('lightning', './assets/Lightning.mp4', 'loadeddata', false, true);
         };
         function create(){
-          cloud1 = this.add.sprite(960, 540, 'cloud');
+          cloud1 = this.add.image(960, 540, 'cloud');
           cloud2 = this.add.sprite(1920+960, 540, 'cloud');
-          player = this.add.sprite(400,300,'ship');
-          /*player.
 
+          player = this.add.sprite(400,300,'ship');
           this.anims.create({
-              key: 'down',
+              key: 'ship_animation',
               frames: this.anims.generateFrameNumbers('ship', { start: 9, end: 11 }),
               frameRate: 12,
               repeat: -1
           })
-          player.anims.play('down',true);
-*/
-          this.video = this.add.video(400, 540, 'lightning');
-          this.video.setLoop(true);
+          player.anims.play('ship_animation', true);
+
+          battle = this.sound.add('battle');
+          battle.play();
+          lightning = this.add.video(400, 540, 'lightning');
+          lightning.setLoop(true);
           //this.video.play();
           
         };
