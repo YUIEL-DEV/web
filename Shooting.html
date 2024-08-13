@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Shooting</title>
+	<script src="./js/phaser.min.js"></script>
+    <script>
+
+	//ゲームに関する設定
+        var config = {
+            type: Phaser.AUTO,
+            width: 1920,
+            height: 1080,
+            fps: {
+              min: 600,
+              target: 600,
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+        function preload(){
+          this.load.image('cloud', './assets/cloud.png');
+          this.load.spritesheet('ship', './assets/pipo-airship01.png',
+            { frameWidth: 32, frameHeight: 32 }
+          );
+          this.load.video('lightning', './assets/Lightning.mp4', 'loadeddata', false, true);
+        };
+        function create(){
+          cloud1 = this.add.sprite(960, 540, 'cloud');
+          cloud2 = this.add.sprite(1920+960, 540, 'cloud');
+          player = this.add.sprite(400,300,'ship');
+          /*player.
+
+          this.anims.create({
+              key: 'down',
+              frames: this.anims.generateFrameNumbers('ship', { start: 9, end: 11 }),
+              frameRate: 12,
+              repeat: -1
+          })
+          player.anims.play('down',true);
+*/
+          this.video = this.add.video(400, 540, 'lightning');
+          this.video.setLoop(true);
+          //this.video.play();
+          
+        };
+        function update(){
+          player.x = game.input.mousePointer.x;
+          player.y = game.input.mousePointer.y;
+          cloud1.x -= 1;
+          cloud2.x -= 1;
+        }
+        //ゲームオブジェクトの生成
+        var game = new Phaser.Game(config);
+    </script>
+  </head>
+
+  <body>
+    
+  </body>
+</html>
