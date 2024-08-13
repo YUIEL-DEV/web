@@ -3,60 +3,99 @@
   <head>
     <meta charset="UTF-8">
     <title>Shooting</title>
-	<script src="./js/phaser.min.js"></script>
+    <link rel="stylesheet", href="./css/game_style.css" type="text/css">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.80.1/phaser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@v3.80.1/dist/phaser.js"></script>
     <script>
+      class mainScene extends Phaser.Scene
+      {
+        distance2 = 200;
+        angle2 = 0;
+        distance1 = 100;
+        angle1 = 0;
+        bullet2;
+        bullet1;
 
-	//ゲームに関する設定
-        var config = {
-            type: Phaser.AUTO,
-            width: 1920,
-            height: 1080,
-            fps: {
-              min: 600,
-              target: 600,
-            },
-            scene: {
-                preload: preload,
-                create: create,
-                update: update
-            }
-        };
-        function preload(){
+        preload ()
+        {
           this.load.image('cloud', './assets/cloud.png');
           this.load.spritesheet('ship', './assets/pipo-airship01.png',
             { frameWidth: 32, frameHeight: 32 }
           );
+
           this.load.audio('battle', './audio/battle.mp3');
           this.load.video('lightning', './assets/Lightning.mp4', 'loadeddata', false, true);
-        };
-        function create(){
-          cloud1 = this.add.image(960, 540, 'cloud');
-          cloud2 = this.add.sprite(1920+960, 540, 'cloud');
 
-          player = this.add.sprite(400,300,'ship');
+          this.load.image('bullet1', './assets/bullet1.png');
+          this.load.image('bullet2', './assets/bullet2.png');
+        }
+
+        create ()
+        {
+          // 画面中央のX座標
+          this.centerX = this.game.config.width / 2;
+          // 画面中央のY座標
+          this.centerY = this.game.config.height / 2;
+
+          this.cloud1 = this.add.image(960, 540, 'cloud');
+          this.cloud2 = this.add.image(1920+960, 540, 'cloud');
+
+          this.player = this.add.sprite(400,300,'ship');
           this.anims.create({
               key: 'ship_animation',
               frames: this.anims.generateFrameNumbers('ship', { start: 9, end: 11 }),
               frameRate: 12,
               repeat: -1
           })
-          player.anims.play('ship_animation', true);
+          this.player.anims.play('ship_animation', true);
 
-          battle = this.sound.add('battle');
-          battle.play();
-          lightning = this.add.video(400, 540, 'lightning');
-          lightning.setLoop(true);
+          this.battle = this.sound.add('battle');
+          //battle.play();
+          this.lightning = this.add.video(400, 540, 'lightning');
+          this.lightning.setLoop(true);
           //this.video.play();
           
-        };
-        function update(){
-          player.x = game.input.mousePointer.x;
-          player.y = game.input.mousePointer.y;
-          cloud1.x -= 1;
-          cloud2.x -= 1;
+          // 弾の作成
+          this.bullet1 = this.add.sprite(400, 300, 'bullet1');
+          this.bullet2 = this.add.sprite(400, 300, 'bullet2');
         }
-        //ゲームオブジェクトの生成
-        var game = new Phaser.Game(config);
+
+        update ()
+        {
+          this.player.x = game.input.mousePointer.x;
+          this.player.y = game.input.mousePointer.y;
+          this.cloud1.x -= 1;
+          this.cloud2.x -= 1;
+          
+          //  Reset the position so the rotation gets the correct _new_ position
+          this.bullet1.setPosition(400, 300);
+          this.bullet2.setPosition(400, 300);
+
+          Phaser.Math.RotateAroundDistance(this.bullet1, 400, 300, this.angle1, this.distance1);
+          Phaser.Math.RotateAroundDistance(this.bullet2, this.bullet1.x, this.bullet1.y, this.angle2, this.distance2);
+
+          this.angle1 = Phaser.Math.Angle.Wrap(this.angle1 + 0.01);
+          this.angle2 = Phaser.Math.Angle.Wrap(this.angle2 + 0.01);
+        }
+      }
+
+      //ゲームに関する設定
+      const config = {
+        type: Phaser.AUTO,
+        width: 1920,
+        height: 1080,
+        fps: {
+          min: 60,
+          target: 60,
+        },
+        // backgroudColor: "black",
+        audio: { disableWebAudio: true},
+        scene: [ mainScene ]
+        // scene: [ titleScene, mainScene ]
+      };
+
+      //ゲームオブジェクトの生成
+      var game = new Phaser.Game(config);
     </script>
   </head>
 
