@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Shooting</title>
+    <link rel="stylesheet", href="./css/game_style.css" type="text/css">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.80.1/phaser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@v3.80.1/dist/phaser.js"></script>
+    <script>
+      ang = 0;
+      posx = 16;
+      class mainScene extends Phaser.Scene
+      {
+        distance2 = 200;
+        angle2 = 0;
+        distance1 = 100;
+        angle1 = new Array(100).fill(0);
+        bullet2;
+        bullet1;
+
+        // 画面中央のX座標
+        centerX = 1920 / 2;
+        // 画面中央のY座標
+        centerY = 1080 / 2;
+        preload ()
+        {
+          console.log(this.angle1[99]);
+          this.load.image('cloud', './assets/cloud.png');
+          this.load.spritesheet('ship', './assets/pipo-airship01.png',
+            { frameWidth: 32, frameHeight: 32 }
+          );
+
+          this.load.audio('battle', './audio/battle.mp3');
+          this.load.video('lightning', './assets/Lightning.mp4', 'loadeddata', false, true);
+
+          this.load.image('bullet1', './assets/bullet1.png');
+        }
+
+        create ()
+        {
+          this.cloud1 = this.add.image(960, 540, 'cloud');
+          this.cloud2 = this.add.image(1920+960, 540, 'cloud');
+
+          this.player = this.add.sprite(400,300,'ship');
+          this.anims.create({
+              key: 'ship_animation',
+              frames: this.anims.generateFrameNumbers('ship', { start: 9, end: 11 }),
+              frameRate: 12,
+              repeat: -1
+          })
+          this.player.anims.play('ship_animation', true);
+
+          this.battle = this.sound.add('battle');
+          //battle.play();
+          this.lightning = this.add.video(400, 540, 'lightning');
+          this.lightning.setLoop(true);
+          //this.video.play();
+          
+          this.bullet1s = this.physics.add.group({
+            key: 'bullet1',
+            repeat: 100,
+            setXY: { x: 16, y: 16 }
+          });
+          
+          this.bullet1s.children.iterate(function (value) {
+            value.setDisplaySize(16,16);
+          });
+        }
+        posx = 0;
+        update ()
+        {
+          this.player.x = game.input.mousePointer.x;
+          this.player.y = game.input.mousePointer.y;
+          this.cloud1.x -= 1;
+          this.cloud2.x -= 1;
+          
+          this.bullet1s.children.iterate(function(value) {
+            setTimeout(function() {
+              value.x += posx;
+              value.y = Math.cos(Phaser.Math.Angle.Wrap(ang)) * 540 + 540;
+            }, 100);
+            posx += 0.01;
+            ang += 0.01;
+          });
+        }
+      }
+
+      function bullet1Factory() {
+
+        
+        
+
+
+      }
+
+      function bullet1Delete() {
+
+      }
+      //ゲームに関する設定
+      const config = {
+        type: Phaser.AUTO,
+        width: 1920,
+        height: 1080,
+        fps: {
+          min: 60,
+          target: 60,
+        },
+        physics: {
+          default: 'arcade'
+        },
+        // backgroudColor: "black",
+        audio: { disableWebAudio: true},
+        scene: [ mainScene ]
+        // scene: [ titleScene, mainScene ]
+      };
+
+      //ゲームオブジェクトの生成
+      var game = new Phaser.Game(config);
+    </script>
+  </head>
+
+  <body>
+    
+  </body>
+</html>
