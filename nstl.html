@@ -1,0 +1,112 @@
+<!--_   __ _   _  ___  ___  _        ___    _    __  __  ___
+    \ \ / /| | | ||_ _|| __|| |      / __|  /_\  |  \/  || __|
+     \ V / | |_| | | | | _| | |__   | (_ | / _ \ | |\/| || _|
+      |_|   \___/ |___||___||____|   \___|/_/ \_\|_|  |_||___|-->
+<!DOCTYPE html>
+<html>
+  <html lang="ja">
+    <meta name="author" content="YUIEL">
+    <meta name="description" content="This page introduces Yuiel product GAME">
+    <meta charset="UTF-8">
+    <title>No Shooting to Life</title>
+    <link rel="stylesheet", href="./css/game_style.css" type="text/css">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.80.1/phaser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@v3.80.1/dist/phaser.js"></script>
+    <script type="module">
+      import { Bullet1 } from "./js/circular-motion.js";
+      
+        // 画面中央のX座標
+        const centerX = 960;
+        // 画面中央のY座標
+        const centerY = 540;
+
+      class mainScene extends Phaser.Scene
+      {
+        preload ()
+        {
+          this.load.image('background', './assets/background.png');
+          this.load.image('gameArea', './assets/gameArea_stage2.png');
+          this.load.image('cloud', './assets/cloud.png');
+          this.load.spritesheet('ship', './assets/pipo-airship01.png',
+            { frameWidth: 32, frameHeight: 32 }
+          );
+
+          this.load.audio('bgm', './audio/−仙侠−渓谷の修練.mp3');
+          this.load.video('lightning', './assets/Lightning.mp4', 'loadeddata', false, true);
+
+          this.load.image('bullet1', './assets/bullet1.png');
+        }
+
+        create ()
+        {
+          this.gameArea = this.add.image(612.8, centerY, 'gameArea');
+          //this.gameArea.setVisible(false);
+          this.cloud1 = this.add.image(960, 540-100, 'cloud');
+          this.cloud2 = this.add.image(1920+960, 540-100, 'cloud');
+          this.background = this.add.image(centerX, centerY, 'background');
+          this.player = this.add.sprite(400,300,'ship');
+          this.player.setDisplaySize(48, 48);
+          this.anims.create({
+              key: 'ship_animation',
+              frames: this.anims.generateFrameNumbers('ship', { start: 9, end: 11 }),
+              frameRate: 12,
+              repeat: -1
+          })
+          this.player.anims.play('ship_animation', true);
+          this.bgm = this.sound.add('bgm');
+          this.input.keyboard.on('keydown-ENTER', function ()
+          {
+            this.scale.startFullscreen();
+            this.add.text(1060.3, 909.7, '\n　　　♪ −仙侠−渓谷の修練\n\n　　　　　YUIEL&GenAI', { fontSize: 38, color: 'black', fixedWidth: 644.4, fixedHeight: 160.3, aline: 'center' });
+            this.bgm.play();
+          }, this);
+          this.lightning = this.add.video(400, 540, 'lightning');
+          this.lightning.setLoop(true);
+          //this.video.play();
+
+          Bullet1.create(this);
+        }
+
+        update ()
+        {
+          this.player.x = game.input.mousePointer.x;
+          this.player.y = game.input.mousePointer.y;
+          this.cloud1.x -= 1;
+          this.cloud2.x -= 1;
+
+          if(Bullet1.flag() == true) {
+            Bullet1.update();
+          }
+        }
+      }
+      
+      function bullet1Delete() {
+
+      }
+      //ゲームに関する設定
+      const config = {
+        type: Phaser.AUTO,
+        width: 1920,
+        height: 1080,
+        fps: {
+          min: 60,
+          target: 60,
+        },
+        physics: {
+          default: 'arcade'
+        },
+        // backgroudColor: "black",
+        audio: { disableWebAudio: true},
+        scene: [ mainScene ]
+        // scene: [ titleScene, mainScene ]
+      };
+
+      //ゲームオブジェクトの生成
+      var game = new Phaser.Game(config);
+    </script>
+  </head>
+
+  <body>
+    
+  </body>
+</html>
