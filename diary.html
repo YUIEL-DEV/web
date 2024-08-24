@@ -1,0 +1,59 @@
+<!--
+__   __ _   _  ___  ___  _      __      __ ___  ___     ___    _     ___  ___
+\ \ / /| | | ||_ _|| __|| |     \ \    / /| __|| _ )   | _ \  /_\   / __|| __|
+ \ V / | |_| | | | | _| | |__    \ \/\/ / | _| | _ \   |  _/ / _ \ | (_ || _|
+  |_|   \___/ |___||___||____|    \_/\_/  |___||___/   |_|  /_/ \_\ \___||___|
+
+-->
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta name="author" content="YUIEL">
+		<meta name="description" content="This page introduces Yuiel work (IT) and life.">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/diary_style.css">
+		<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+		<script src="./js/diary_script.js"></script>
+		<title>DIARY - "EL"の世界</title>
+	</head>
+	<body>
+		<div id="preload">
+			<div id="video-area">
+				<video id="video1" webkit-playsinline playsinline muted autoplay loop></video>
+			</div>
+		</div>
+		<div id="video-area">
+			<video id="video2" webkit-playsinline playsinline muted autoplay loop></video>
+		</div>
+		<button type="button" class="menu-btn">
+			<i class="fa fa-bars" aria-hidden="true"></i>
+		</button>
+		<div class="menu">
+			<a class="menu__item" href="./index.html">TOP</a>
+			<a class="menu__item" href="./profile.html">PROFILE</a>
+			<a class="menu__item" href="./product.html">PRODUCT</a>
+			<a class="menu__item" href="./diary.html">DIARY</a>
+			<a class="menu__item" href="./contact.html">CONTACT</a>
+		</div>
+		<div class="text-line">
+			<h1>DIARY</h1>
+		</div>
+		<div class="flex-container">
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">【制作日誌】2024/08/24 AM10:30<br>楽曲タイトルは大体思い付きで命名してます。<br>音に関しては、俺がこの世で最も好きな音がピアノの音なので、プロンプトにピアノは欠かさない。<br><br>曲だけだと寂しく感じたので、<br>ストーリーと演出作って付け加えました↓ <a href="https://t.co/kfA0m9V6LA">pic.twitter.com/kfA0m9V6LA</a></p>&mdash; YUIEL (@YUIEL_N) <a href="https://twitter.com/YUIEL_N/status/1827156545945399732?ref_src=twsrc%5Etfw">August 24, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">2024/08/18<br>制作課程<br>ゲーム画面のフレーム制作中。<br>出掛ける為、本日はここまで。 <a href="https://t.co/lxy2ra5XUR">pic.twitter.com/lxy2ra5XUR</a></p>&mdash; YUIEL (@YUIEL_N) <a href="https://twitter.com/YUIEL_N/status/1825013626450944168?ref_src=twsrc%5Etfw">August 18, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">2024/08/17<br>制作課程<br>※動画は開発途中STAGE_2想定のもの<br>　BGM「－仙俠－渓谷の修練」<br>　　　　YUIEL&amp;GenAI<br><br>Phaser.jsでcos波再現するコードの一部抜粋したものを下記に載せておく。このTIPSが誰かの助けになれば幸い <a href="https://t.co/qs8nENfDoM">pic.twitter.com/qs8nENfDoM</a></p>&mdash; YUIEL (@YUIEL_N) <a href="https://twitter.com/YUIEL_N/status/1824761433323896846?ref_src=twsrc%5Etfw">August 17, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">static create(scene) {<br>　let distance = 0;<br>　bullet1s = scene.physics.add.group();<br>　for (let i = 0; i &lt; 500; i++) {<br>　　// 弾生成<br>　　let bullet = scene.add.sprite(distance -= 2, -16, &#39;bullet1&#39;);<br>　　bullet1s.add(bullet);<br>　}<br>　return bullet1s;<br>}</p>&mdash; YUIEL (@YUIEL_N) <a href="https://twitter.com/YUIEL_N/status/1824761890071089518?ref_src=twsrc%5Etfw">August 17, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">static update() {<br>　angle2 = 0;<br>　bullet1s.children.iterate(<br>　　function (bullet1) {<br>　　　bullet1.x += 1 ;<br>　　　bullet1.y = Math.cos(Phaser.Math.Angle.Wrap(angle1 - angle2)) * 540 + 540;<br>　　　angle1 += 0.00001; // 角度変化量<br>　　　angle2 += 0.1; // 弾間隔<br>});</p>&mdash; YUIEL (@YUIEL_N) <a href="https://twitter.com/YUIEL_N/status/1824762101170331960?ref_src=twsrc%5Etfw">August 17, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">2024/08/16<br>PRODUCTページに追加予定のものの、<br>何となくの構想作成完了。<br>少しずつ制作していく(仕事の状況次第で失踪) <a href="https://t.co/KUwqsEFvOL">pic.twitter.com/KUwqsEFvOL</a></p>&mdash; YUIEL (@YUIEL_N) <a href="https://twitter.com/YUIEL_N/status/1824446817930805674?ref_src=twsrc%5Etfw">August 16, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">友人にwebページを作りたいと言われ、知見貸しついでにサクッと自分もサイト作りました<a href="https://t.co/CkfJeEeqZv">https://t.co/CkfJeEeqZv</a><br><br>今後のサイト更新予定↓<br>・WEBサイト作成の技術指南書掲載<br>・プログラミングQA＆TIPS<br>※仕事の状況によって失踪します<br><br>2024/08/06 20:00 <a href="https://t.co/JYUnH9O7bJ">pic.twitter.com/JYUnH9O7bJ</a></p>&mdash; YUIEL (@YUIEL_N) <a href="https://twitter.com/YUIEL_N/status/1820777301392638114?ref_src=twsrc%5Etfw">August 6, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+	</body>
+</html>
